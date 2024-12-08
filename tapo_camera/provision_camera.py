@@ -108,6 +108,7 @@ def guided_provisioning(
                 f"Camera could not find network ({wifi_name}), "
                 f"retrying (attempt {attempt_no}/{attempt_max})"
             )
+            attempt_no += 1
     if ap is None:
         print(f"Camera could not find network ({wifi_name})")
         exit()
