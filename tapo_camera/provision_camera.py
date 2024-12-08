@@ -147,6 +147,6 @@ def guided_provisioning(
     tp.set_third_user_first(third_user_name, third_user_password)
 
     rtsp_url = (
-        f"rtsp://{third_user_name}:{third_user_password}@{tp.ip_address}:544/stream1"
+        f"rtsp://{third_user_name}:{third_user_password}@{tp.ip_address}:554/stream1"
     )
     print(f"Access camera stream at:\n{rtsp_url}")
