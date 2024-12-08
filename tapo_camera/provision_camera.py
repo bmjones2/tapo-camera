@@ -128,7 +128,7 @@ def guided_provisioning(
         )
         tp.set_timezone(tz_offset, tz_id)  # will use NTP
     # Remaining setup and connect
-    tp.set_default_recording_plan()()
+    tp.set_default_recording_plan()
     tp.onboarding_set_access_point(**ap)
 
     # Re-establish connection with camera and execute the 'initialisation commands'
