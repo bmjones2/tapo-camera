@@ -122,11 +122,21 @@ def guided_provisioning(
     if tz_region_name is None:
         # Determine and set timezone (TODO doesn't currently account for DST)
         tz_id = guided_tz_selection()
-        offset = datetime.now(pytz.timezone(tz_id)).strftime("%z")
-        tz_offset = (
-            f"UTC{'-' if offset[0] not in ('-', '+') else ''}{offset[:-2]}:{offset[-2:]}"
-        )
-        tp.set_timezone(tz_offset, tz_id)  # will use NTP
+    else:
+        tz_id = tz_region_name
+
+    offset = datetime.now(pytz.timezone(tz_id)).strftime("%z")
+    tz_offset = (
+        f"UTC{'-' if offset[0] not in ('-', '+') else ''}{offset[:-2]}:{offset[-2:]}"
+    )
+    tp.set_timezone(tz_offset, tz_id)  # will use NTP
+    # disable date and text on video
+    tp.set_osd_text("", False)
+    # disable Tapo logo on video
+    tp.set_osd_logo_disable()
+    # set resolution to max
+    tp.set_resolution_main(tp.get_available_resolutions_main()[0])
+
     # Remaining setup and connect
     tp.set_default_recording_plan()
     tp.onboarding_set_access_point(**ap)
